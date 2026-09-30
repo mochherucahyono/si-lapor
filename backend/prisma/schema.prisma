@@ -1,0 +1,114 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  WARGA
+  PETUGAS
+  ADMIN
+}
+
+enum Status {
+  PENDING
+  PROSES
+  SELESAI
+  DITOLAK
+}
+
+enum JenisKasus {
+  AKSES_ILEGAL
+  ANCAMAN_KEKERASAN
+  ANCAMAN_PENCEMARAN
+  BERITA_BOHONG
+  CRACKING
+  EKSFILTRASI_DATA
+  FASILITASI_KEJAHATAN_SIBER
+  GANGGUAN_SISTEM
+  INTERSEPSI
+  INTRUSI
+  JUDI_ONLINE
+  MANIPULASI_DATA_DARI_INTERSEPSI
+  MANIPULASI_DATA_YANG_TIDAK_SAH
+  NARKOBA_ILLEGAL
+  PENCEMARAN_NAMA_BAIK
+  PENCURIAN_DATA
+  PENGUNGKAPAN_DATA_YANG_TIDAK_SAH
+  PENIPUAN_ONLINE
+  PERDAGANGAN_HEWAN_YANG_DILINDUNGI
+  PERDAGANGAN_ORANG
+  PERUNDUNGAN_ONLINE
+  PORNOGRAFI
+  PROSTITUSI
+  PROVOKASI_PENGHASUTAN
+  UJARAN_KEBENCIAN
+  LAINNYA
+}
+
+model User {
+  id        String      @id @default(uuid())
+  nama      String
+  email     String      @unique
+  password  String
+  telepon   String?
+  role      Role        @default(WARGA)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  pengaduan Pengaduan[]
+  tanggapan Tanggapan[]
+
+  @@map("users")
+}
+
+model Pengaduan {
+  id           String     @id @default(uuid())
+  
+  // Data Pelapor dari Form
+  namaLengkap  String
+  email        String
+  alamat       String?    @db.Text
+  provinsi     String?
+  kota         String?
+  noTelepon    String?
+  fotoKtp      String?
+
+  // Detail Kasus
+  jenisKasus   JenisKasus
+  akunTerlapor String
+  pesan        String     @db.Text
+  lampiran     String?
+
+  // Status & Audit
+  status       Status     @default(PENDING)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  // Relasi ke User
+  userId       String?
+  user         User?      @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  tanggapan    Tanggapan[]
+
+  @@map("pengaduan")
+}
+
+model Tanggapan {
+  id           String    @id @default(uuid())
+  isiTanggapan String    @db.Text
+  createdAt    DateTime  @default(now())
+
+  pengaduanId  String
+  pengaduan    Pengaduan @relation(fields: [pengaduanId], references: [id], onDelete: Cascade)
+
+  petugasId    String
+  petugas      User      @relation(fields: [petugasId], references: [id], onDelete: Cascade)
+
+  @@map("tanggapan")
+}

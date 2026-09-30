@@ -1,0 +1,8 @@
+        <button 
+            @click="showLogoutModal = true" 
+            title="Keluar dari akun"
+            class="border border-stone-300 bg-white hover:bg-stone-100 text-stone-700 px-3 py-1.5 rounded-lg text-xs font-medium transition cursor-pointer flex items-center gap-1.5"
+          >
+            <LogOut class="w-3.5 h-3.5" />
+            <span>Logout</span>
+        </button>
