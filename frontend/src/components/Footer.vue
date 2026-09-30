@@ -35,7 +35,7 @@
         <div class="lg:col-span-2 space-y-3">
           <h4 class="text-xs font-semibold text-white tracking-wider">SiLapor</h4>
           <ul class="space-y-2.5 text-xs text-stone-400 font-light">
-            <li><router-link to="/silapor" class="hover:text-white transition-colors">Beranda</router-link></li>
+            <li><router-link to="/" class="hover:text-white transition-colors">Beranda</router-link></li>
             <li><router-link to="/about-us" class="hover:text-white transition-colors">Tentang Kami</router-link></li>
             <li><router-link to="/statistic" class="hover:text-white transition-colors">Statistik Aduan</router-link></li>
             <li><router-link to="/pengaduan" class="hover:text-white transition-colors">Buat Laporan</router-link></li>

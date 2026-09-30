@@ -5,7 +5,7 @@
       <nav class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
         
         <!-- Logo -->
-        <router-link to="/silapor" class="flex items-center gap-2" title="Beranda SiLapor" aria-label="Beranda SiLapor">
+        <router-link to="/" class="flex items-center gap-2" title="Beranda SiLapor" aria-label="Beranda SiLapor">
           <div class="w-8 h-8 rounded-xl bg-stone-900 flex items-center justify-center font-serif text-white font-bold text-sm shadow-xs">
             S
           </div>
@@ -15,7 +15,7 @@
         <!-- Desktop Navigation: Saat User Sudah Login -->
         <div v-if="currentUser" class="hidden md:flex items-center space-x-4">
           <router-link 
-            to="/silapor" 
+            to="/" 
             active-class="bg-stone-200/60 text-stone-900"
             title="Beranda SiLapor"
             class="px-3 py-1.5 rounded-full text-xs font-medium text-stone-600 hover:text-stone-900 hover:bg-stone-200/50 transition flex items-center gap-1.5"
@@ -84,7 +84,7 @@
         <!-- Desktop Navigation: Saat User Belum Login -->
         <div v-else class="hidden md:flex items-center space-x-2">
           <router-link 
-            to="/silapor" 
+            to="/" 
             active-class="text-stone-900 bg-stone-200/60"
             title="Beranda SiLapor"
             class="px-3 py-1.5 rounded-full text-xs font-medium text-stone-600 hover:text-stone-900 hover:bg-stone-200/50 transition flex items-center gap-1.5"
@@ -208,7 +208,7 @@
             <div class="mt-6 space-y-1">
               <template v-if="currentUser">
                 <router-link 
-                  to="/silapor" 
+                  to="/" 
                   @click="isOffcanvasOpen = false"
                   active-class="bg-stone-100 text-stone-900 font-medium"
                   class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs text-stone-900 hover:bg-stone-100 transition"
@@ -260,7 +260,7 @@
 
               <template v-else>
                 <router-link 
-                  to="/silapor" 
+                  to="/" 
                   @click="isOffcanvasOpen = false"
                   active-class="bg-stone-100 text-stone-900 font-medium"
                   class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs text-stone-900 hover:bg-stone-100 transition"

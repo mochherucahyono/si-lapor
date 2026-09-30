@@ -13,7 +13,7 @@ import Guide from '../components/information/Guide.vue';
 import Contact from '../components/information/Contact.vue';
 
 const routes = [{
-        path: '/silapor',
+        path: '/',
         name: 'Landing',
         component: LandingPage,
     },
